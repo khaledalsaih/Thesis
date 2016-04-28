@@ -1,0 +1,93 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This is a sample header for a sample dissertation. Fill in the name,
+% and the other information. LaTeX will work out the table of
+% content, the list of figures and of tables for you.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newpage
+\thispagestyle{empty}
+
+% ******* Title page *******
+% **************************
+
+\vspace*{2cm}
+\begin{center}
+{\Large\bf Automatic Classification And Segmentation Of OCT Images\\} \vspace{2cm} {\large
+Khaled Abdulhameed Manea Alsaih\'i\\
+\vspace{2cm}
+Department of LE2I - Laboratoire Electronique, Informatique et Image \\
+Université Bourgogne Franche-Comté \\
+University of Technology Malaysia }
+\end{center}
+
+\vspace{7cm}
+\begin{center}
+{\large A Thesis Submitted for the Degree of \\MSc
+in Vision and Robotics (MSCV) \\\vspace{0.3cm} $\cdot$ 2016
+$\cdot$}
+\end{center}
+\singlespacing
+
+
+%ABSTRACT
+\begin{abstract}
+We study in this thesis new methods in order to analyse Optical Coherence Tomography (OCT) volumes in patients that they suffer from Diabetes.
+Early detection of Diabetic Macular Edema (DME) and Age-related Macular Degeneration (AMD) would help patients to get special treatments.
+Thus, developing a mechanism or algorithm to automatically detecting the cyst is a must to save humans lives and maintain their status healthy. 
+
+Basically, the algorithm for automated detection of the retina diseases is going through several steps.
+Starting by preprocessing, which involves de-noising then flattening then cropping each B-scan of OCT images. After that, Multi-scale histograms of oriented gradient descriptors (HOG) and Local Binary Pattern (LBP) are extracted separately.
+In other tests, HOG and LBP are combined to create a set of different feature vectors.
+We also made some tests of the features vectors when projected into a lower-dimensional space through Principal Component Analysis (PCA).
+Eventually, a Bag of Words (BoW) is also perform prior to feed the data to different classifiers like Linear SVM, kernel RBF SVM and Random Forest (RF).
+Experimental results show a promising performance in terms of sensitivity (SE) and specificity (SP) of 87.5\% and 87.5\%, respectively, on a challenging dataset.
+%$\lambda = \phi$ \ref{eq:eq1}
+%\cite{}
+
+
+\vspace*{5cm}
+
+
+
+%\begin{center}
+%\begin{quote}
+%\it Research is what I'm doing when I don't know what I'm
+%doing.\,\ldots
+%\end{quote}
+%\end{center}
+%\hfill{\small Werner von Braun}
+
+\end{abstract}
+
+\doublespacing
+
+%\pagestyle{empty}
+\pagenumbering{roman}
+\setcounter{page}{1} \pagestyle{plain}
+
+
+\tableofcontents
+
+\listoffigures
+\listoftables
+
+\chapter*{Acknowledgments}
+\addcontentsline{toc}{chapter}
+         {\protect\numberline{Acknowledgments\hspace{-96pt}}}
+
+First of all, I would like to thank my amazing supervisor Prof. Fabrice Meriaudeau for his consistent support and clear directions. He never felt annoyed from my questions.
+I would also love to thank my colleagues Glemaitre Lemaitre and Mojdeh Rastgoo for their kind help through the duration of my master project.
+
+I would like to send this thesis work and efforts to My country YEMEN and then to my father Prof. Abdulhameed Alsaih and My Mom for their permanent support through my life.
+Also I would like to thank my brother Tariq, my Sister Taif, my cousins Mojahed, Mohammed and Dr.Sakher. 
+
+In addition, I would like to thank my friends that they Always support me starting by Hamodi, Yousef, Zezo, Sabahi, Seper, Paola, Jose, Dennis, Sandeep, Alhalali, Cansen, Raed, Kiril, and others.
+
+As usual I would like to thank my Senior Dr.Fares, Dr.Taha and Dr.Abdulaziz for their motivation and help for any inquiries.   
+
+Finally, thanks to University of Burgundy and University of Technology Malaysia for the great chance to be part of this course which taught me a lot and looking forward to apply it with the sense of serving humanity in a good manner.
+
+\pagestyle{fancy}
+
+
