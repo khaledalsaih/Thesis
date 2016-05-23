@@ -1,53 +1,99 @@
 \chapter{Introduction} \label{chap:intro}
 
-\section{Preparing your dissertation} \label{sect:thefirst}
+%\section{Preparing your dissertation} \label{sect:thefirst}
 
-You are strongly encouraged to use the Latex templates provided.
+%You are strongly encouraged to use the Latex templates provided.
+Sugar level Discipline is what determine the existence of Diabetes in human body.
+Diabetes has two types: type 1 which is insulin-dependent and type 2 which insulin-independent.
+This critical disease is affecting many parts of the body like the Eye, Heart, Pancreas, body power and others.
+The scope of this project is to focus in the Eye disease specifically Retina.
+The sight for human is so important and with the Optical Coherence Tomography (OCT) images, the doctor can decide the status of the patient either it has disease or not.
+Some statistics are showing from \cite{national1995diabetes} 29.1 million of Americans in the United States, which contributes to 9.3\% of the overall population.
+Diabetes added to 231,404 deaths in the US in 2007.
+\$245 billion is the total cost of diagnosing the disease in the United States in 2012.
+With this big number of affected people and the money spent for Research and development (R\&D) in this area many algorithms are designed to detect diabetes in the early stage.
 
-\subsection{Paper}
-The manuscript should be in A4 size, and the printed paper should
-be of at least 70 gsm.
+Eye diseases such as Diabetic Retinopathy (DR) and Diabetic Macular Edema (DME) are the most common causes of irreversible vision loss in individuals with diabetes.
+DME is defined as the increase in retinal thickness within one disk diameter of the fovea center with or without hard exudate and sometimes associated with cysts.
+Spectral Domain OCT (SD-OCT)\cite{cense2004ultrahigh} images the depth of the retina with a high resolution and fast image acquisition is an adequate tool, compared to fundus images for DME identification. Automated diagnosis on OCT imaging is rather new and most of the pioneer works on OCT image analysis have focused on the problem of retinal layers or specific lesions (e.g. cysts) segmentation. 
 
-\subsection{Font and margins}
-Thesis should be printed on both sides of the paper. Use no less
-than 1.5 spacing, with quotations and notes single-spaced.
-Regarding \textbf{Character size}, not less than 2.0mm for
-capitals and 1.5mm for x-height (the height of a lower-case x). Us
-a serif font (i.e. Times) between 10 and 12 points. Use consistent
-and clear fonts through all the document.
+In this thesis we developed some methods to early detecting the diabetes with the care of some important things: time processing, cost and accuracy of the method in order to detect the cyst. We aimed to do many tests and use the tools provided to enhance the machine learning method we used.
+The method applied is a great help for the doctors and for the patients if the solution of the sickness also involves any tele-medicine treatment. 
 
-The text layout should be approximately as follows:
+\section{Objectives} \label{sect:thefirst}
+The project target is to develop an automatic algorithm for retina screening for the sake of detecting the cysts and during the research period the main objectives of this project as follows:
 
 \begin{itemize}
-    \item $4cm$ binding margin
-    \item $2cm$ head margin (top of page)
-    \item $2.5cm$ fore-edge margin
-    \item $4cm$ tail margin (bottom of page)
+\item \textbf{Objective 1}: develop an automatic algorithm to diagnose the retinopathy diabetes in the OCT volumes.
+
+\item \textbf{Objective 2}: develop an automatic  algorithm to segment the cyst in OCT images using deep learning .
+
+\item \textbf{Objective 3}: evaluate the algorithms based on diabetic retinopathy screening. 
 \end{itemize}
 
-\section{Title Page}
-The title page should contain the title of thesis, authors name,
-and at the foot of the page: the name of degree,  Your University,
-and the year of presentation. Something like this:
+After achieving the objectives, some other techniques was added to enhance the results.
+In addition to the objectives mentioned, different classifiers was tested and compared.
+An algorithm is developed to detect Diabetic Retinopathy (DR) and Diabetic Macular Edema (DME) from the lesions segmented.
 
-\vspace*{1cm}
-\begin{center}
-{\Large\bf MSc. Thesis example VIBOT\\} \vspace{2cm} {\large
-Robert Mart\'i\\
-\vspace{1cm}
-Department of Computer Architecture and Technology\cite{platel1997plant} \\
-University of Girona}
+\section{Thesis Overview}
+This project is arranged and sequenced in four chapters. An outline is described as follows:
 
-\end{center}
+\begin{itemize}
+\item \textbf{Chapter 2}: explains in details the anatomy of the eye accompanied by the diseases that affect the vision process for humans.
+In addition, it reviews the previous work in this field with the state of art of this project.
 
-\vspace{2cm}
-\begin{center}
-{\large A Thesis Submitted for the Degree of MSc Erasmus Mundus in
-Vision and Robotics (VIBOT)\\ \vspace{0.3cm} $\cdot$ 2008 $\cdot$}
-\end{center}
+\item \textbf{Chapter 3}: shows the work done in the period decided to do the project, which has two parts: first, designing an automatic algorithm to classify the OCT images.
+Second, segmenting the OCT images based on deep learning techniques.
 
+\item \textbf{Chapter 4}: Discusses the results of the work done and evaluate the performances of the methods.
 
-\subsection{References}
-You can reference other authors by using the $cite command$
-\cite{Pokorski:1998hr}. You are encouraged to use bib files and
-let bibtex do the job for you.
+\item \textbf{Chapter 5}: sums up the project and recommends work to be achieved in future.  
+\end{itemize}
+
+%\subsection{Paper}
+%The manuscript should be in A4 size, and the printed paper should
+%be of at least 70 gsm.
+%
+%\subsection{Font and margins}
+%Thesis should be printed on both sides of the paper. Use no less
+%than 1.5 spacing, with quotations and notes single-spaced.
+%Regarding \textbf{Character size}, not less than 2.0mm for
+%capitals and 1.5mm for x-height (the height of a lower-case x). Us
+%a serif font (i.e. Times) between 10 and 12 points. Use consistent
+%and clear fonts through all the document.
+%
+%The text layout should be approximately as follows:
+%
+%\begin{itemize}
+%    \item $4cm$ binding margin
+%    \item $2cm$ head margin (top of page)
+%    \item $2.5cm$ fore-edge margin
+%    \item $4cm$ tail margin (bottom of page)
+%\end{itemize}
+
+%\section{Title Page}
+%The title page should contain the title of thesis, authors name,
+%and at the foot of the page: the name of degree,  Your University,
+%and the year of presentation. Something like this:
+%
+%\vspace*{1cm}
+%\begin{center}
+%{\Large\bf MSc. Thesis example VIBOT\\} \vspace{2cm} {\large
+%Robert Mart\'i\\
+%\vspace{1cm}
+%Department of Computer Architecture and Technology\cite{platel1997plant} \\
+%University of Girona}
+%
+%\end{center}
+%
+%\vspace{2cm}
+%\begin{center}
+%{\large A Thesis Submitted for the Degree of MSc Erasmus Mundus in
+%Vision and Robotics (VIBOT)\\ \vspace{0.3cm} $\cdot$ 2008 $\cdot$}
+%\end{center}
+%
+%
+%\subsection{References}
+%You can reference other authors by using the $cite command$
+%\cite{Pokorski:1998hr}. You are encouraged to use bib files and
+%let bibtex do the job for you.

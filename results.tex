@@ -1,0 +1,367 @@
+\chapter{Results And Discussion} \label{chap:results}
+
+This section presents the results and the discussion of all experiments.
+Presenting the results based on validation and evaluation process mentioned in the previous chapter.
+We have divided this section into two parts, which data presenting is classified as Classification and Segmentation.
+Inside each section, some subsections presenting the results for each section.
+In classification section, SERI data is used, and OPTIMA challenge data is used in the second section for segmentation.
+
+\section{Classification Experiments}
+\subsection{Experiments}
+This section presents the results obtained from different classifiers like linear-SVM, SVM-RBF and RF respectively.
+First, the 32 volumes are loaded, then two of them are excluded for testing and 30 for training, hence this process is performed 16 times to validate the results based on cross validation.
+Then, each B-scan image is de-noised using sparsity-based block matching and 3D-filtering (BM3D), which is available online with a harded-threshold , and then flattened the iamge.
+Flattening is done by computing the RPE layer, then we compute the convex hull around RPE points and using the lower line of the retina, then applying median filter to remove any outliers.
+This almost flatten image is then applied to RANSAC to make lines stright.
+After that, we cropped the targeted location, which consists the disease usual place for having accurate classification and to avoid any not important details.
+Instead of dividing images into patches, we extract HOG and LBP at four different scale levels using impyarmid then concatenate them into one single vector for each image.
+After that, for some parts of the test as shown in the tables below, the feature vectors are concatenated from all volumes and sent directly to the classifiers.
+Some other cases are represnting the features in before sending them to the clssifier.
+Since the great number of dimensions produced from HOG or LBP or both which are almost 116235 vectors, PCA is used to reduce the dimensions for both discriptors 40 dimensions for HOG and 20 for LBP.
+Some of experiments sending the PCA of HOG to classifiers directly or lbp or concatenating bot and send them to classifiers.
+Another way to represent the feature vectors by creating dictionaries or words then converting the words to histograms based on kmeans and send them to the classifiers as tabel 4.4
+And finally the classifiers shown the results in table 4.1,4.2,4.3 and 4.4 based on confusion matrix of cross validation.
+\begin{table*}
+\caption{Experiments based Linear-SVM.}
+\centering
+\resizebox{1\textwidth}{!}{
+\begin{tabular}{l ccccc}
+  \toprule 
+  Features & \multicolumn{5}{c}{Evaluation}\\
+  \cmidrule{2-6}  
+  & Sensitivity & Specificity & Precision & F1-score & Accuracy \\
+  \midrule
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  \acs{hog} & 0.69 & 0.94 & 0.91 & 0.81 & 0.78 \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+
+  \acs{hog}$^{\acs{pca}}$ & 0.75 & 0.87 & 0.85 & 0.80 & 0.81\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+ 
+  \acs{lbp}$_{8-ri}$ & 0.63 & 0.81 & 0.77 & 0.69 & 0.72\\
+  \multicolumn{6}{c}{}\\[-1.5ex] 
+
+  \acs{lbp}$_{8-ri}^{\acs{pca}}$ & 0.88 & 0.88 & 0.88 & 0.88 & 0.88\\
+  \multicolumn{6}{c}{}\\[-1.5ex]   
+
+  \acs{lbp}$_{8-nri}$ & 0.63 & 0.81 & 0.79 & 0.73 & 0.75\\
+  \multicolumn{6}{c}{}\\[-1.5ex] 
+
+  \acs{lbp}$_{8-nri}^{\acs{pca}}$ & 0.63 & 0.88 & 0.83 & 0.71 & 0.75\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+
+  \acs{lbp}$_{16-ri}$ & 0.75 & 0.75 & 0.75 & 0.75 & 0.75\\
+  \multicolumn{6}{c}{}\\[-1.5ex] 
+
+  \acs{lbp}$_{16-ri}^{\acs{pca}}$ & 0.75 & 0.75 & 0.75 & 0.75 & 0.75\\
+  \multicolumn{6}{c}{}\\[-1.5ex]  
+
+  \acs{lbp}$_{16-nri}$ & 0.69 & 0.81 & 0.79 & 0.73 & 0.75\\
+  \multicolumn{6}{c}{}\\[-1.5ex] 
+
+  \acs{lbp}$_{16-nri}^{\acs{pca}}$ & 0.63 & 0.88 & 0.83 & 0.71 & 0.75\\
+  \multicolumn{6}{c}{}\\[-1.5ex]   
+
+  \acs{lbp}$_{24-ri}$ & 0.69 & 0.88 & 0.85 & 0.76 & 0.78\\
+  \multicolumn{6}{c}{}\\[-1.5ex] 
+ 
+  \acs{lbp}$_{24-ri}^{\acs{pca}}$ & 0.81 & 0.81 & 0.81 & 0.81 & 0.81\\
+  \multicolumn{6}{c}{}\\[-1.5ex]  
+
+  \acs{lbp}$_{24-nri}$ & 0.69 & 0.88 & 0.85 & 0.76 & 0.78\\
+  \multicolumn{6}{c}{}\\[-1.5ex] 
+
+  \acs{lbp}$_{24-nri}^{\acs{pca}}$ & 0.69 & 0.88 & 0.85 & 0.76 & 0.78\\
+  \multicolumn{6}{c}{}\\[-1.5ex]     
+
+   \acs{hog}$^{\acs{pca}}$ +\acs{lbp}$_{8-ri}^{\acs{pca}}$ & 0.69 & 0.81 & 0.79 & 0.73 & 0.75\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  
+   \acs{hog}$^{\acs{pca}}$ +\acs{lbp}$_{16-ri}^{\acs{pca}}$ & 0.75 & 0.88 & 0.86 & 0.8 & 0.81\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  
+   \acs{hog}$^{\acs{pca}}$ +\acs{lbp}$_{24-ri}^{\acs{pca}}$ & 0.69 & 0.88 & 0.85 & 0.79 & 0.78\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+
+ \acs{hog}$^{\acs{pca}}$ +\acs{lbp}$_{8-nri}^{\acs{pca}}$ & 0.69 & 0.75 & 0.73 & 0.71 & 0.72\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  
+  \acs{hog}$^{\acs{pca}}$+\acs{lbp}$_{8-nri}^{\acs{pca}}$+\acs{lbp}$_{16-nri}^{\acs{pca}}$+\acs{lbp}$_{24-nri}^{\acs{pca}}$ & 0.62 & 0.75 & 0.71 & 0.66 & 0.68 \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+
+  \acs{hog}$^{\acs{pca}}$+\acs{lbp}$_{8-ri}^{\acs{pca}}$+\acs{lbp}$_{16-ri}^{\acs{pca}}$+\acs{lbp}$_{24-ri}^{\acs{pca}}$ & 0.69 & 0.81 & 0.78 & 0.73 & 0.75 \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+ 
+\bottomrule
+\end{tabular}}
+\end{table*}
+
+
+\begin{table*}
+\caption{Experiments based Linear-SVM-RBF.}
+\centering
+\resizebox{0.85\textwidth}{!}{
+\begin{tabular}{l ccccc}
+  \toprule 
+  Features & \multicolumn{5}{c}{Evaluation}\\
+  \cmidrule{2-6}  
+  & Sensitivity & Specificity & Precision & F1-score & Accuracy \\
+  \midrule
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  \acs{hog} & 0.94 & 0.06 & 0.50 & 0.65 & 0.50 \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+
+  \acs{hog}$^{\acs{pca}}$ & 0.13 & 0.88 & 0.50 & 0.20 & 0.50\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+
+  \acs{lbp}$_{8-ri}$ & 0.94 & 0.25 & 0.55 & 0.70 & 0.59\\
+  \multicolumn{6}{c}{}\\[-1.5ex] 
+
+  \acs{lbp}$_{8-ri}^{\acs{pca}}$ & 0.81 & 0.81 & 0.81 & 0.81 & 0.81\\
+  \multicolumn{6}{c}{}\\[-1.5ex]   
+
+  \acs{lbp}$_{8-nri}$ & 1.00& 0.00 & 0.50 & 0.67 & 0.50\\
+  \multicolumn{6}{c}{}\\[-1.5ex] 
+
+  \acs{lbp}$_{8-nri}^{\acs{pca}}$ & 0.81 & 0.31 & 0.54 & 0.65 & 0.56\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+
+  \acs{lbp}$_{16-ri}$ & 0.88 & 0.25 & 0.54 & 0.67 & 0.56\\
+  \multicolumn{6}{c}{}\\[-1.5ex] 
+ 
+  \acs{lbp}$_{16-ri}^{\acs{pca}}$ & 0.81 & 0.88 & 0.87 & 0.84 & 0.84\\
+  \multicolumn{6}{c}{}\\[-1.5ex]  
+ 
+  \acs{lbp}$_{16-nri}$ & 1.00 & 0.00 & 0.50 & 0.67 & 0.50\\
+  \multicolumn{6}{c}{}\\[-1.5ex] 
+
+  \acs{lbp}$_{16-nri}^{\acs{pca}}$ & 0.81 & 0.50 & 0.62 & 0.70 & 0.66\\
+  \multicolumn{6}{c}{}\\[-1.5ex]   
+
+  \acs{lbp}$_{24-ri}$ & 0.88 & 0.50 & 0.64 & 0.74 & 0.69\\
+  \multicolumn{6}{c}{}\\[-1.5ex] 
+
+  \acs{lbp}$_{24-ri}^{\acs{pca}}$ & 0.75 & 0.88 & 0.86 & 0.80 & 0.81\\
+  \multicolumn{6}{c}{}\\[-1.5ex]  
+ 
+  \acs{lbp}$_{24-nri}$ & 1.00 & 0.00 & 0.50 & 0.67 & 0.50\\
+  \multicolumn{6}{c}{}\\[-1.5ex] 
+
+  \acs{lbp}$_{24-nri}^{\acs{pca}}$ & 0.69 & 0.81 & 0.79 & 0.73 & 0.75\\
+  \multicolumn{6}{c}{}\\[-1.5ex] 
+  
+   \acs{hog}$^{\acs{pca}}$ +\acs{lbp}$_{8-ri}^{\acs{pca}}$ & 0.69 & 0.81 & 0.79 & 0.73 & 0.75\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+
+   \acs{hog}$^{\acs{pca}}$ +\acs{lbp}$_{8-nri}^{\acs{pca}}$ & 0.00 & 1.00 & NAN & 0.00 & 0.50\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+
+   \acs{hog}$^{\acs{pca}}$ +\acs{lbp}$_{16-ri}^{\acs{pca}}$ & 0.19 & 0.94 & 0.75 & 0.30 & 0.56\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+
+  \acs{hog}$^{\acs{pca}}$ +\acs{lbp}$_{16-nri}^{\acs{pca}}$ & 0.63 & 0.94 & 0.50 & 0.11 & 0.50\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+
+ \acs{hog}$^{\acs{pca}}$ +\acs{lbp}$_{24-ri}^{\acs{pca}}$ & 0.00 & 1.00 & NAN & 0.00 & 0.50\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+
+  \acs{hog}$^{\acs{pca}}$ +\acs{lbp}$_{24-nri}^{\acs{pca}}$ & 0.13 & 0.94 & 0.67 & 0.21 & 0.53\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+ 
+\bottomrule
+\end{tabular}}
+\end{table*}
+
+
+\begin{table*}
+\caption{Experiments based Random Forest.}
+\centering
+\resizebox{0.85\textwidth}{!}{
+\begin{tabular}{l ccccc}
+  \toprule 
+  Features & \multicolumn{5}{c}{Evaluation}\\
+  \cmidrule{2-6}  
+  & Sensitivity & Specificity & Precision & F1-score & Accuracy \\
+  \midrule
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  \acs{hog} & 0.63 & 1.00 & 1.00 & 0.77 & 0.81 \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+
+  \acs{hog}$^{\acs{pca}}$ & 0.56 & 0.94 & 0.90 & 0.69 & 0.75\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+
+  \acs{lbp}$_{8-ri}$ & 0.75 & 0.81 & 0.80 & 0.74 & 0.78\\
+  \multicolumn{6}{c}{}\\[-1.5ex] 
+
+  \acs{lbp}$_{8-ri}^{\acs{pca}}$ & 0.75 & 0.81 & 0.80 & 0.74 & 0.78\\
+  \multicolumn{6}{c}{}\\[-1.5ex]   
+
+  \acs{lbp}$_{8-nri}$ & 0.69 & 0.81 & 0.79 & 0.73 & 0.75\\
+  \multicolumn{6}{c}{}\\[-1.5ex] 
+
+  \acs{lbp}$_{8-nri}^{\acs{pca}}$ & 0.75 & 0.81 & 0.80 & 0.77 & 0.78\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+
+  \acs{lbp}$_{16-ri}$ & 0.81 & 0.88 & 0.87 & 0.84 & 0.84\\
+  \multicolumn{6}{c}{}\\[-1.5ex] 
+
+  \acs{lbp}$_{16-ri}^{\acs{pca}}$ & 0.75 & 0.94 & 0.92 & 0.83 & 0.84\\
+  \multicolumn{6}{c}{}\\[-1.5ex]  
+
+  \acs{lbp}$_{16-nri}$ & 0.69 & 1.00 & 1.00 & 0.81 & 0.84\\
+  \multicolumn{6}{c}{}\\[-1.5ex] 
+
+  \acs{lbp}$_{16-nri}^{\acs{pca}}$ & 0.75 & 0.88 & 0.86 & 0.80 & 0.81\\
+  \multicolumn{6}{c}{}\\[-1.5ex]   
+
+  \acs{lbp}$_{24-ri}$ & 0.69 & 0.94 & 0.92 & 0.79 & 0.81\\
+  \multicolumn{6}{c}{}\\[-1.5ex] 
+
+  \acs{lbp}$_{24-ri}^{\acs{pca}}$ &  0.75 & 0.94 & 0.92 & 0.83 & 0.84\\
+  \multicolumn{6}{c}{}\\[-1.5ex]  
+
+  \acs{lbp}$_{24-nri}$ & 0.69 & 0.94 & 0.92 & 0.79 & 0.81\\
+  \multicolumn{6}{c}{}\\[-1.5ex] 
+
+  \acs{lbp}$_{24-nri}^{\acs{pca}}$ & 0.75 & 0.88 & 0.86 & 0.80 & 0.81\\
+  \multicolumn{6}{c}{}\\[-1.5ex]       
+  
+   \acs{hog}$^{\acs{pca}}$ +\acs{lbp}$_{8-ri}^{\acs{pca}}$ & 0.63 & 0.81 & 0.77 & 0.69 & 0.72\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+
+   \acs{hog}$^{\acs{pca}}$ +\acs{lbp}$_{8-nri}^{\acs{pca}}$ & 0.63 & 0.81 & 0.77 & 0.69 & 0.72\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+
+   \acs{hog}$^{\acs{pca}}$ +\acs{lbp}$_{16-ri}^{\acs{pca}}$ & 0.75 & 0.88 & 0.86 & 0.80 & 0.81\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+
+  \acs{hog}$^{\acs{pca}}$ +\acs{lbp}$_{16-nri}^{\acs{pca}}$ & 0.63 & 0.88 & 0.83 & 0.71 & 0.75\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+
+ \acs{hog}$^{\acs{pca}}$ +\acs{lbp}$_{24-ri}^{\acs{pca}}$ & 0.63 & 0.88 & 0.83 & 0.71 & 0.75\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+
+  \acs{hog}$^{\acs{pca}}$ +\acs{lbp}$_{24-nri}^{\acs{pca}}$ & 0.69 & 0.88 & 0.85 & 0.76 & 0.78\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+
+\bottomrule
+\end{tabular}}
+\end{table*}
+
+\begin{table}
+\caption{\textit Classification results using Histogram+\ac{pca}+\ac{bow} representation.}
+\centering
+\resizebox{0.60\textwidth}{!}{
+\begin{tabular}{l c c  lcr}
+ \toprule
+ \multicolumn{6}{c}{Histogram + \acs{pca} + \acs{bow}}\\
+ \midrule
+ &  &  & \multicolumn{3}{c}{Metric}  \\
+ \cmidrule{4-6}
+ & Classifier & \# Words & \acs{se} & \acs{sp} & \acs{pre} \\
+ \midrule  
+ \acs{hog}$^{\acs{pca}}$ +\acs{lbp}$_{8-ri}^{~PCA}$ & Linear-\acs{svm} & 10 & 0.38 & 0.69 & 0.55 \\
+ \multicolumn{6}{c}{}\\[-1.5ex]
+ 
+ \acs{hog}$^{\acs{pca}}$ +\acs{lbp}$_{8-ri}^{~PCA}$ & Linear-\acs{svm} & 20 & 0.31 & 0.88 & 0.71 \\
+ \multicolumn{6}{c}{}\\[-1.5ex]
+
+ \acs{hog}$^{\acs{pca}}$ +\acs{lbp}$_{8-ri}^{~PCA}$ & Linear-\acs{svm} & 30 & 0.31 & 0.94 & 0.83 \\
+ \multicolumn{6}{c}{}\\[-1.5ex]
+ 
+ \acs{hog}$^{\acs{pca}}$ +\acs{lbp}$_{8-ri}^{~PCA}$ & Linear-\acs{svm} & 40 & 0.19 & 0.94 & 0.75 \\
+ \multicolumn{6}{c}{}\\[-1.5ex]
+
+ \acs{hog}$^{\acs{pca}}$ +\acs{lbp}$_{8-ri}^{~PCA}$ & Linear-\acs{svm} & 50 & 0.38 & 0.81 & 0.67 \\
+ \multicolumn{6}{c}{}\\[-1.5ex]
+
+ \acs{hog}$^{\acs{pca}}$ +\acs{lbp}$_{8-ri}^{~PCA}$ & Linear-\acs{svm} & 60 & 0.13 & 0.88 & 0.50 \\
+ \multicolumn{6}{c}{}\\[-1.5ex]
+
+ \acs{lbp}$_{8-ri}^{~PCA}$ & Linear-\acs{svm} & 10 & 0.63 & 0.75 & 0.71 \\
+ \multicolumn{6}{c}{}\\[-1.5ex]
+ 
+ \acs{lbp}$_{8-ri}^{~PCA}$ & Linear-\acs{svm} & 20 & 0.75 & 0.38 & 0.55 \\
+ \multicolumn{6}{c}{}\\[-1.5ex]
+
+ \acs{lbp}$_{8-ri}^{~PCA}$ & Linear-\acs{svm} & 30 & 0.44 & 0.44 & 0.44 \\
+ \multicolumn{6}{c}{}\\[-1.5ex]
+ 
+ \acs{lbp}$_{8-ri}^{~PCA}$ & Linear-\acs{svm} & 40 & 0.69 & 0.56 & 0.61 \\
+ \multicolumn{6}{c}{}\\[-1.5ex]
+
+ \acs{lbp}$_{8-ri}^{~PCA}$ & Linear-\acs{svm} & 50 & 0.50 & 0.50 & 0.50 \\
+ \multicolumn{6}{c}{}\\[-1.5ex]
+
+ \acs{lbp}$_{8-ri}^{~PCA}$ & Linear-\acs{svm} & 60 & 0.69 & 0.31 & 0.50 \\
+ \multicolumn{6}{c}{}\\[-1.5ex]
+
+ \acs{lbp}$_{16-ri}$ & \acs{rbf}-\acs{svm} & 10 & 0.56 & 0.50 & 0.53 \\
+ \multicolumn{6}{c}{}\\[-1.5ex]
+
+ \acs{lbp}$_{16-ri}$ & \acs{rbf}-\acs{svm} & 20 & 0.56 & 0.63 & 0.60 \\
+ \multicolumn{6}{c}{}\\[-1.5ex]
+  
+ \acs{lbp}$_{16-ri}$ & \acs{rbf}-\acs{svm} & 30 & 0.56 & 0.63 & 0.60 \\
+ \multicolumn{6}{c}{}\\[-1.5ex]
+
+ \acs{lbp}$_{16-ri}$ & \acs{rbf}-\acs{svm} & 40 & 0.69 & 0.56 & 0.61 \\
+ \multicolumn{6}{c}{}\\[-1.5ex]
+
+ \acs{lbp}$_{16-ri}$ & \acs{rbf}-\acs{svm} & 50 & 0.50 & 0.50 & 0.50 \\
+ \multicolumn{6}{c}{}\\[-1.5ex]
+
+ \acs{lbp}$_{16-ri}$ & \acs{rbf}-\acs{svm} & 60 & 0.75 & 0.38 & 0.55 \\
+ \multicolumn{6}{c}{}\\[-1.5ex]
+
+ \acs{lbp}$_{16-ri}$ & \acs{rf} & 10 & 0.38 & 0.63 & 0.50 \\
+ \multicolumn{6}{c}{}\\[-1.5ex] 
+
+ \acs{lbp}$_{16-ri}$ & \acs{rf} & 20 & 0.50 & 0.50 & 0.50 \\
+ \multicolumn{6}{c}{}\\[-1.5ex] 
+
+ \acs{lbp}$_{16-ri}$ & \acs{rf} & 30 & 0.44 & 0.63 & 0.54 \\
+ \multicolumn{6}{c}{}\\[-1.5ex]
+
+ \acs{lbp}$_{16-ri}$ & \acs{rf} & 40 & 0.56 & 0.50 & 0.53 \\
+ \multicolumn{6}{c}{}\\[-1.5ex]
+
+ \acs{lbp}$_{16-ri}$ & \acs{rf} & 50 & 0.38 & 0.31 & 0.35 \\
+ \multicolumn{6}{c}{}\\[-1.5ex]
+
+
+ \acs{lbp}$_{16-ri}$ & \acs{rf} & 60 & 0.44 & 0.38 & 0.41 \\
+ \multicolumn{6}{c}{}\\[-1.5ex]
+
+\acs{lbp}$_{16-ri}^{~PCA}$ & \acs{rf} & 10 & 0.69 & 0.38 & 0.52  \\
+ \multicolumn{5}{c}{}\\[-2ex]
+
+\acs{lbp}$_{16-ri}^{~PCA}$ & \acs{rf} & 20 & 0.56 & 0.75 & 0.69  \\
+ \multicolumn{5}{c}{}\\[-2ex]
+
+\acs{lbp}$_{16-ri}^{~PCA}$ & \acs{rf} & 30 & 0.56 & 0.38 & 0.47  \\
+ \multicolumn{5}{c}{}\\[-2ex]
+
+\acs{lbp}$_{16-ri}^{~PCA}$ & \acs{rf} & 40 & 0.50 & 0.63 & 0.57  \\
+ \multicolumn{5}{c}{}\\[-2ex]
+ 
+ \acs{lbp}$_{16-ri}^{~PCA}$ & \acs{rf} & 50 & 0.69 & 0.50 & 0.58  \\
+ \multicolumn{5}{c}{}\\[-2ex]
+
+ \acs{lbp}$_{16-ri}^{~PCA}$ & \acs{rf} & 60 & 0.56 & 0.63 & 0.60  \\
+ \multicolumn{5}{c}{}\\[-2ex]
+
+\bottomrule
+\end{tabular}
+}
+\label{tab:tab3}
+\end{table}
+
+\subsection{Discussion}
+Tabel 4.1 showed the results of linear-SVM classifier, and the best results was recorded for PCA either for HOG with 0.75 for sensitivity and 0.78 for specificity or LBP 0.88 for both sensitivity and specificity and when mixing both it gave lower results. 
+Tabel 4.2 showed the lowest results when using the kernal of SVM and some of the experiments did not converge and that in the cases of mixing HOG with LBP.
+Tabel 4.3 showed the best results and stable classifer using Random Forest and best results were for LBP , and this showed how LBP discriptors performed better in this project.
+Finally in tabel 4.4 we picked up the highest results from the previous tables and performed BoW and the results were unexpected as this method shall improve the performance.
+The results shown was degraded as the image was not divided into patches but it was extracting features directly to the image.
+\section{Segmentation Experiments}
+Will be shown soon

@@ -3,6 +3,29 @@
 \usepackage{epsf,graphicx}
 \usepackage{latexsym,amssymb}
 \usepackage{setspace,cite}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[LGRgreek]{mathastext}
+\usepackage{lipsum}
+\usepackage{multirow}
+\usepackage{subfigure}
+\usepackage{url}
+\usepackage{varwidth}
+\usepackage{booktabs}
+\usepackage[table]{xcolor}
+\usepackage{tabularx}
+\usepackage{arydshln}
+\usepackage{datatool}
+\usepackage{courier}
+\usepackage{lscape}
+\usepackage{pdflscape}
+\usepackage{siunitx}
+\usepackage{bbding}
+\usepackage{pifont}
+\usepackage{wasysym}
+\usepackage{amssymb}
 % for margins left, right top bottom
 \usepackage{anysize}
 \marginsize{4cm}{2.5cm}{4cm}{4cm}
@@ -13,10 +36,12 @@
 %does the headers on the pages - keep in
 \usepackage{fancyhdr}
 
+
 %omitting any of these makes the thesis compile without the omitted
 %chapter - good for editing single chapters.
 \includeonly{header,intro,background,appendix}
-
+\usepackage{acro}
+\input{acro_def.tex}
 \begin{document}
 \newpage
 
@@ -46,6 +71,9 @@
 \onehalfspacing
 \input{intro.tex}
 \input{background.tex}
+\input{Methodology.tex}
+\input{results}
+\input{conclusion}
 \appendix
 \input{appendix.tex}
 
