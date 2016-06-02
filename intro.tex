@@ -3,12 +3,12 @@
 %\section{Preparing your dissertation} \label{sect:thefirst}
 
 %You are strongly encouraged to use the Latex templates provided.
-Sugar level Discipline is what determine the existence of Diabetes in human body.
+Sugar level instability is what determine the existence of Diabetes in human body.
 Diabetes has two types: type 1 which is insulin-dependent and type 2 which insulin-independent.
 This critical disease is affecting many parts of the body like the Eye, Heart, Pancreas, body power and others.
 The scope of this project is to focus in the Eye disease specifically Retina.
 The sight for human is so important and with the Optical Coherence Tomography (OCT) images, the doctor can decide the status of the patient either it has disease or not.
-Some statistics are showing from \cite{national1995diabetes} 29.1 million of Americans in the United States, which contributes to 9.3\% of the overall population.
+Some statistics are showing from \cite{national1995diabetes} that 29.1 million of Americans in the United States are affected with diabetes, which contributes to 9.3\% of the overall population.
 Diabetes added to 231,404 deaths in the US in 2007.
 \$245 billion is the total cost of diagnosing the disease in the United States in 2012.
 With this big number of affected people and the money spent for Research and development (R\&D) in this area many algorithms are designed to detect diabetes in the early stage.
@@ -17,22 +17,25 @@ Eye diseases such as Diabetic Retinopathy (DR) and Diabetic Macular Edema (DME) 
 DME is defined as the increase in retinal thickness within one disk diameter of the fovea center with or without hard exudate and sometimes associated with cysts.
 Spectral Domain OCT (SD-OCT)\cite{cense2004ultrahigh} images the depth of the retina with a high resolution and fast image acquisition is an adequate tool, compared to fundus images for DME identification. Automated diagnosis on OCT imaging is rather new and most of the pioneer works on OCT image analysis have focused on the problem of retinal layers or specific lesions (e.g. cysts) segmentation. 
 
-In this thesis we developed some methods to early detecting the diabetes with the care of some important things: time processing, cost and accuracy of the method in order to detect the cyst. We aimed to do many tests and use the tools provided to enhance the machine learning method we used.
+In this thesis we developed some methods to early detecting the diabetes with the care of some important things: time processing, cost and accuracy of the method in order to classify the disease.
+We aimed to do many tests and use the tools provided to enhance the machine learning method we used.
 The method applied is a great help for the doctors and for the patients if the solution of the sickness also involves any tele-medicine treatment. 
 
 \section{Objectives} \label{sect:thefirst}
 The project target is to develop an automatic algorithm for retina screening for the sake of detecting the cysts and during the research period the main objectives of this project as follows:
 
 \begin{itemize}
-\item \textbf{Objective 1}: develop an automatic algorithm to diagnose the retinopathy diabetes in the OCT volumes.
-
-\item \textbf{Objective 2}: develop an automatic  algorithm to segment the cyst in OCT images using deep learning .
-
-\item \textbf{Objective 3}: evaluate the algorithms based on diabetic retinopathy screening. 
+\item \textbf{Objective 1}: develop an automatic algorithm to diagnose the retinopathy diabetes in the OCT volumes into two approaches:
+\begin{itemize}
+\item to classify the OCT images using machine learning techniques into diseased volumes or normal volumes.
+\item to classify potential regions in OCT images using deep learning techniques into cyst patches or background patches.
 \end{itemize}
 
-After achieving the objectives, some other techniques was added to enhance the results.
-In addition to the objectives mentioned, different classifiers was tested and compared.
+\item \textbf{Objective 2}: evaluate the algorithms based on diabetic retinopathy screening. 
+\end{itemize}
+
+After achieving the objectives, some other techniques were added to enhance the results.
+In addition to the objectives mentioned, different classifiers were tested and compared.
 An algorithm is developed to detect Diabetic Retinopathy (DR) and Diabetic Macular Edema (DME) from the lesions segmented.
 
 \section{Thesis Overview}
@@ -43,9 +46,9 @@ This project is arranged and sequenced in four chapters. An outline is described
 In addition, it reviews the previous work in this field with the state of art of this project.
 
 \item \textbf{Chapter 3}: shows the work done in the period decided to do the project, which has two parts: first, designing an automatic algorithm to classify the OCT images.
-Second, segmenting the OCT images based on deep learning techniques.
+Second, to classify potential regions in the OCT images based on deep learning techniques.
 
-\item \textbf{Chapter 4}: Discusses the results of the work done and evaluate the performances of the methods.
+\item \textbf{Chapter 4}: discusses the results of the work done and evaluate the performances of the methods.
 
 \item \textbf{Chapter 5}: sums up the project and recommends work to be achieved in future.  
 \end{itemize}
@@ -72,7 +75,7 @@ Second, segmenting the OCT images based on deep learning techniques.
 %\end{itemize}
 
 %\section{Title Page}
-%The title page should contain the title of thesis, authors name,
+%The title page should containhttp://www.blindness.org/blog/index.php/why-face-recognition-can-be-difficult-with-central-vision-loss/ the title of thesis, authors name,
 %and at the foot of the page: the name of degree,  Your University,
 %and the year of presentation. Something like this:
 %

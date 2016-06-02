@@ -1,32 +1,32 @@
 \chapter{Conclusion} \label{chap:conclusion}
 Eye diseases such as Diabetic Retinopathy (DR) and Diabetic Macular Edema (DME) are the most common causes of irreversible vision loss in individuals with diabetes.
 DME is defined as the increase in retinal thickness within one disk diameter of the fovea center with or without hard exudate and sometimes associated with cysts.
-the status of the patient either it has disease or not.
-Some statistics are showing from \cite{national1995diabetes} 29.1 million of Americans in the United States, which contributes to 9.3\% of the overall population.
+The status of the patient either it has disease or not will define the classification task, and the cyst location will define the segmentation task.
+Some statistics are showing from \cite{national1995diabetes} that 29.1 million of Americans in the United States are suffering from diabetes, which contributes to 9.3\% of the overall population.
 Diabetes added to 231,404 deaths in the US in 2007.
 \$245 billion is the total cost of diagnosing the disease in the United States in 2012.
 With this big number of affected people and the money spent for Research and development (R\&D) in this area many algorithms are designed to detect diabetes in the early stage.
 
-This project tracked algorithms made for the analysis of OCT images with focus to classify DME in the first part and segmentation of the OCT images in the second part.
+This project tracked algorithms made for the analysis of OCT images with focus to classify DME in the first part and classifying the potential regions of the OCT images in the second part.
 The introduction to the eye anatomy and the entire structure was given, followed by presenting the diseases might attack the eye structure. 
 After that, the work showed of many screening and imaging techniques to give data about the eye.
 An automatic algorithm was developed to be able to recognize the volumes and classify them either to DME or normal.
 
-This method was first preprocessed by de-nosing images using BM3D and flattening using RANSAC and the cropping was done to avoid wasting time in untargeted location of an image and to be specific of job.
+This method was first preprocessed by de-nosing images using BM3D and flattening using RANSAC and the cropping was done to avoid wasting time in un-targeted location of an image and to be specific of job.
 Then, this followed by extracting features using HOG and LBP and the features resulted are represented in reducing the dimensions using PCA and create visual words and dictionary using BoW.
 After that, the feature vectors are assigned to classifiers like SVM, SVM-RBF and RF. 
-The validation based on the confusion matrix was done to vaildate the results aspects in term of percision, sensitivity and accuracy.
+The validation based on the confusion matrix was done to validate the results aspects in term of precision, sensitivity and accuracy.
 
-The segmentation of OCT images was based on extracting MSER and then compare it with the groundtruth given by the raters.
-Each volume has two groundtruths to be used for referencing of the cyst location, hence the appearnce of STAPLE algorithm to create another reference of ground truth based on the two groundtruths.
-After that, it was assigned to the autoencoder for training and feature extraction before sending it to softmax layer for further classification of cyst apperance in image.
-Validation and evaluation of results was done based on    
+The classification of potential regions of OCT images was based on extracting MSER and then compare it with the ground-truth given by the raters.
+Each volume has two ground-truths to be used for referencing of the cyst location, hence the appearance of STAPLE algorithm to create another reference of ground truth based on the two ground-truths.
+After that, it was assigned to the auto-encoder for training and feature extraction before sending it to softmax layer for further classification of cyst appearance in image.  
 
-Limiting the results shown in the previous chapter might be for some reasons like the limited number of collection data from hospitals to have general aspect of the method.
-In addition to that, there is no standard for cyst exsitance and this can be shown from the appearnace of many ground-truths for one image, which is affecting the algorithm accuracy and performance.
-The harware also affects the speed of performing the algorithm and thus will limit the number of experiments in the case of deep learning algorithm due to the huge number of data inserted to the neural network.
+The results limitation shown in the previous chapter might be for some reasons like the limited number of collection data from hospitals to have general aspect of the method.
+In addition to that, there is no standard for cyst existence and this can be shown from the appearance of many ground-truths for one image, which is affecting the algorithm accuracy and performance.
+The hardware also affects the speed of performing the algorithm and thus will limit the number of experiments in the case of deep learning algorithm due to the huge number of data inserted to the neural network.
 
-A recommended way to iprove the thesis in the first part is to have many volumes from OCT for training to have a better performance.
-In addition to that, failing the bag of words in the results might be happened because of the way data extracted using HOG, which is extracted based on images not patches.
+A recommended way to improve the thesis in the first part is to have many volumes from OCT for training to have a better performance.
+In addition to that, the reason of failing the bag of words representation in the results might be happened because of the way data extracted using HOG, which is extracted based on images not patches.
 For the second part, a great hardware aspects shall be provided to ensure the speed of training and make couple of experiments to know which method can perform better.
-Another way can be used instead of auto-encoder, Convolution neural network is a good method to test the OCT segmentation in next work.
+The cysts are not fully covered when we extracted the MSER regions specially if the cyst size is small, hence it is suggested to denoise the image to have a better extraction regions that cover all cysts. 
+Another way can be used instead of auto-encoder, Convolution neural network is a good method to test the OCT classification in next work.

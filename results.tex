@@ -2,24 +2,26 @@
 
 This section presents the results and the discussion of all experiments.
 Presenting the results based on validation and evaluation process mentioned in the previous chapter.
-We have divided this section into two parts, which data presenting is classified as Classification and Segmentation.
+We have divided this section into two parts, which is based on classifying images in the first part and classifying potential regions inside the image for the second part.
 Inside each section, some subsections presenting the results for each section.
-In classification section, SERI data is used, and OPTIMA challenge data is used in the second section for segmentation.
+In classification section, SERI data is used, and OPTIMA challenge data is used in the second section.
 
 \section{Classification Experiments}
 \subsection{Experiments}
 This section presents the results obtained from different classifiers like linear-SVM, SVM-RBF and RF respectively.
 First, the 32 volumes are loaded, then two of them are excluded for testing and 30 for training, hence this process is performed 16 times to validate the results based on cross validation.
-Then, each B-scan image is de-noised using sparsity-based block matching and 3D-filtering (BM3D), which is available online with a harded-threshold , and then flattened the iamge.
+Then, each B-scan image is de-noised using sparsity-based block matching and 3D-filtering (BM3D), which is available online with a harded-threshold , and then flattened the image.
 Flattening is done by computing the RPE layer, then we compute the convex hull around RPE points and using the lower line of the retina, then applying median filter to remove any outliers.
-This almost flatten image is then applied to RANSAC to make lines stright.
+This almost flatten image is then applied to RANSAC to make lines straight.
 After that, we cropped the targeted location, which consists the disease usual place for having accurate classification and to avoid any not important details.
+
 Instead of dividing images into patches, we extract HOG and LBP at four different scale levels using impyarmid then concatenate them into one single vector for each image.
 After that, for some parts of the test as shown in the tables below, the feature vectors are concatenated from all volumes and sent directly to the classifiers.
-Some other cases are represnting the features in before sending them to the clssifier.
-Since the great number of dimensions produced from HOG or LBP or both which are almost 116235 vectors, PCA is used to reduce the dimensions for both discriptors 40 dimensions for HOG and 20 for LBP.
+Some other cases are representing the features in before sending them to the classifier.
+Since the great number of dimensions produced from HOG or LBP (rotation invariant (–ri) and non- rotation invariant (–nri) LBP features with various radius, {8,16,24})or both which are almost 116235 vectors, PCA is used to reduce the dimensions for both discriptors 40 dimensions for HOG and 20 for LBP such that the most discriminative components are kept.
 Some of experiments sending the PCA of HOG to classifiers directly or lbp or concatenating bot and send them to classifiers.
-Another way to represent the feature vectors by creating dictionaries or words then converting the words to histograms based on kmeans and send them to the classifiers as tabel 4.4
+
+Another way to represent the feature vectors by creating dictionaries or words then converting the words to histograms based on kmeans and send them to the classifiers and the optimal number of words has been selected heuristicallyas as shown in table 4.4.
 And finally the classifiers shown the results in table 4.1,4.2,4.3 and 4.4 based on confusion matrix of cross validation.
 \begin{table*}
 \caption{Experiments based Linear-SVM.}
@@ -249,7 +251,7 @@ And finally the classifiers shown the results in table 4.1,4.2,4.3 and 4.4 based
 \end{table*}
 
 \begin{table}
-\caption{\textit Classification results using Histogram+\ac{pca}+\ac{bow} representation.}
+\caption{ Classification results using Histogram+\ac{pca}+\ac{bow} representation.}
 \centering
 \resizebox{0.60\textwidth}{!}{
 \begin{tabular}{l c c  lcr}
@@ -358,10 +360,136 @@ And finally the classifiers shown the results in table 4.1,4.2,4.3 and 4.4 based
 \end{table}
 
 \subsection{Discussion}
-Tabel 4.1 showed the results of linear-SVM classifier, and the best results was recorded for PCA either for HOG with 0.75 for sensitivity and 0.78 for specificity or LBP 0.88 for both sensitivity and specificity and when mixing both it gave lower results. 
-Tabel 4.2 showed the lowest results when using the kernal of SVM and some of the experiments did not converge and that in the cases of mixing HOG with LBP.
-Tabel 4.3 showed the best results and stable classifer using Random Forest and best results were for LBP , and this showed how LBP discriptors performed better in this project.
-Finally in tabel 4.4 we picked up the highest results from the previous tables and performed BoW and the results were unexpected as this method shall improve the performance.
+Table 4.1 showed the results of linear-SVM classifier, and the best results was recorded for PCA either for HOG with 0.75 for sensitivity and 0.78 for specificity or LBP 0.88 for both sensitivity and specificity and when mixing both it gave lower results. 
+Table 4.2 showed the lowest results when using the kernel of SVM and some of the experiments did not converge and that in the cases of mixing HOG with LBP.
+Tabel 4.3 showed the best results and stable classifier using Random Forest and best results were for LBP , and this showed how LBP discriptors performed better in this project.
+Finally in table 4.4 we picked up the highest results from the previous tables and performed BoW and the results were unexpected as this method shall improve the performance.
 The results shown was degraded as the image was not divided into patches but it was extracting features directly to the image.
+
+Evaluation of individual features from all tables show that the dimensionality reduction of the features improve the results of B- scan classification.
+PCA is enhancing the results because it deletes the correlated dimensions and gives limited number of dimensions to make the testing and this will prove the quality of the algorithm made.
+In addition, comparing individual features, LBP proves to be more discriminative than HoG features as LBP results are giving the best results and this can be explained as HOG is edge detection method and LBP is intensity detection method and SERI data classification depends on intensity to classify the disease.
+Using only Histogram representation, RF classifier leads to the best performance followed by linear- SVM. RBF-SVM classifier has the lowest performance and over-fits for all the individual features while its performance improves when the number of dimensions are reduced using PCA.
+Based on Tables results, the combination of LBP and HoG features does not improve the results and decreases the performance of individual features.
+In this test, RF and linear-SVM have similar performance while RBF-SVM overfits.
+
+To conclude with Exp1, tables 4.1,4.2 and 4.3 are producing the highest classification performance in this: LBP-PCA and linear-SVM, LBP-PCA and RBF-SVM, LBP16–ri and RF, and LBP16–ri with RF classifier.
+These configurations are later tested in  using BoW representation. The results obtained from this experiment show that Histogram+PCA+BoW representation decreases the results.
+In fact, this approach represents each volume in terms of visual-B-scans rather than visual-patches or visual-subvolumes, which could be a reason why BoW fails.
+The results obtained are compared with different methods applied by other researchers into SERI data as shown in table 4.5\cite{JoanMassich2016}.
+\begin{table*}
+\caption{Summary of the classification performance in terms of se and sp in(\%)}
+\centering
+\resizebox{0.4\textwidth}{!}{
+\begin{tabular}{l ccccc}
+  \toprule 
+   & \multicolumn{5}{c}{Evaluation}\\
+  \cmidrule{2-6}  
+  & Sensitivity & Specificity \\
+  \midrule
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  Lema\^itre~\textit{et~al.}~\cite{lemaitre2015classification} & 87.5 & 75.0\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+
+  Alsaih~\textit{et~al.}~\cite{alsaih2016classification}\cite{alsaih2016classification2} & 87.5 & 87.5\\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+ 
+  Srinivansan~\textit{et~al.}~\cite{srinivasan2014fully} & 68.8 & 93.8\\
+  \multicolumn{6}{c}{}\\[-1.5ex] 
+
+  Venhuizen~\textit{et~al.}~\cite{venhuizen2015automated} & 61.5 & 58.8\\
+  \multicolumn{6}{c}{}\\[-1.5ex]   
+
+  Sankar~\textit{et~al.}~\cite{sankar2016classification} & 81.3 & 62.5\\
+  \multicolumn{6}{c}{}\\[-1.5ex] 
+  Liu~\textit{et~al.}~\cite{liu2011automated} & 68.8 & 93.8\\
+  \multicolumn{6}{c}{}\\[-1.5ex] 
+
+\bottomrule
+\end{tabular}}
+\end{table*}
+
 \section{Segmentation Experiments}
-Will be shown soon
+\subsection{Experiments}
+This section explains the results generated by auto-encoder and softmax layer classifier.
+This experiment starts by extracting the MSER regions from each image and roughly there are 50-200 regions are extracted.
+The MSER is extracted to cover almost all cysts appeared in an image.
+Meanwhile, the STAPLE algorithm is applied to the two-ground-truths to make one reference to test the quality of the algorithm built for segmenting the B-scan images to find the cysts.
+Based on STAPLE, mask is created full of zeros with equal size of B-scan images and only ones are assigned to the STAPLE ground-truth values. 
+After that, images are cropped around the regions extracted by MSER and with the same cropped images size in B-scan images, mask is cropped.
+
+To label the regions, a method is used based on the number of pixels appearing in the mask cropped images and the threshold of the sum of pixels is decided based on the average of pixels appearing and then tried many thresholds and the results shown in table 4.6.
+This labelling decision is applied to both sets, training and testing data.
+The training data after cropping and labelling, each cropped image is resized to 40*40 to fit into autoencoder.
+
+As auto-encoder accepts only exact size of images to be trained.
+Auto-encoder trained two hidden layers with 100 and 50 hidden layers for first and second hidden layer respectively.
+After that, patches output of second autoencoder is classified using softmax layer.
+With the full deep network formed as a stacked network, test images are reshaped into a matrix by changing the columns into vectors then forming the matrix.
+Then, assign the test data to the network \'deepnet\'to evaluate the test patches, then compare the results obtained from the network with the actual label and analyse the results.  
+To enhance the results, fine tuning (back-propagation)is applied on the whole multi-layer network.
+To do this, training data shall be reshaped into vectors then concatenate them to form one matrix, like the testing data.
+Finally, results are validated using confusion matrix and evaluated based on sensitivity, specificity and precision.
+\begin{table*}
+\caption{Auto-encoder Results.}
+\centering
+\resizebox{0.85\textwidth}{!}{
+\begin{tabular}{l ccccc}
+  \toprule 
+  Threshold & \multicolumn{5}{c}{Evaluation}\\
+  \cmidrule{2-6}  
+  & Sensitivity & Specificity & Precision  \\
+  \midrule
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  Bigger than 0 & 0.81 & 0.24 & 0.46  \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  Bigger than 0 + Fine tuning & 0.76 & 0.41 & 0.51 \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  Bigger than 100 & 0.82 & 0.19 & 0.48  \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  Bigger than 100 + Fine tuning & 0.78 & 0.37 & 0.53 \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  Bigger than 150 & 0.93 & 0.53 & 0.68  \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  Bigger than 150 + Fine tuning & 0.93 & 0.82 & 0.85 \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  Bigger than 190 & 0.94 & 0.51 & 0.67  \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  Bigger than 190 + Fine tuning & 0.95 & 0.75 & 0.80 \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  Bigger than 200 & 0.94 & 0.54 & 0.69  \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  Bigger than 200 + Fine tuning & 0.95 & 0.79 & 0.83 \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  Bigger than 210 & 0.89 & 0.12 & 0.51  \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  Bigger than 210 + Fine tuning & 0.82 & 0.51 & 0.63 \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  Bigger than 250 & 0.91 & 0.56 & 0.68  \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  Bigger than 250 + Fine tuning & 0.95 & 0.76 & 0.81 \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  Bigger than 300 & 0.97 & 0.12 & 0.54  \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  Bigger than 300 + Fine tuning & 0.87 & 0.57 & 0.69 \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  Bigger than 400 & 1.00 & 0.00 & 0.55  \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  Bigger than 400 + Fine tuning & 0.72 & 0.26 & 0.54 \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  Bigger than 900 & 1.00 & 0.00 & 0.70  \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+  Bigger than 900 + Fine tuning & 1.00 & 0.00 & 0.70 \\
+  \multicolumn{6}{c}{}\\[-1.5ex]
+\bottomrule
+\end{tabular}}
+\end{table*}
+\subsection{Discussion}
+As we crop the regions extracted from MSER, we created a mask, which has ones assigned to the empty image based on the STAPLE groundtruth with equal size of images in the original image.
+Then we crop the mask regions with exact size of MSER regions cropped in original image.
+To make the label or the threshold in this experiment, we decided to try couple of number of pixels appearing in the mask images, such as if bigger than 300 pixels means any patch has 300 pixels or more label it as cyst otherwise it is background.
+The results obtained are promising and the threshold of 200 pixels or more is giving a good results.
+When the 400 pixels or 900 pixels are used as threshold, the results were bad and does not converge as the cysts size is relatively small and can vary from 50 pixels to 450.
+For 150 pixels, 200 pixels and 250 pixels are giving a very good results as this number of pixels is around the average of sum of pixels for many cysts.
+Future work for this method is by applying this deep learning network to SERI data and compare it with table 4.5.
+In addition to that, CNN can be used for classification.

@@ -1,10 +1,9 @@
 \chapter{Background} \label{chap:background}
 
-In this chapter the explanation is well-defined in term of the anatomy of the eye to the state of art.
+In this chapter the explanation is well-defined in term of the anatomy of the eye and the state of art for classification tasks.
 This chapter explains the retina layers and the abnormalities that may accompany the eye during the human life to have a better understanding about the project scope and the reasons behind following the algorithm used.
-Thus, the flow of the chapter is started by presenting the eye anatomy and the diseases might happen to the eye.
-After that, a review of previous work in classification and segmentation of OCT images and the techniques to evaluate and compare the results of the method used.
-Then, a short summery for the papers reviewed followed by making a highlight for the main references picked for this project   
+After that, a review of previous work in classification of OCT images and the techniques to evaluate and compare the results of the method used.
+Then, a short summary for the papers is reviewed, followed by making a highlight for the main references is presented for this project   
 
 \section{Introduction}
 
@@ -19,22 +18,21 @@ Then, a short summery for the papers reviewed followed by making a highlight for
 
 Eye is one of the most important organs, which is responsible of vision for humans.
 Saving this organ is critical and taking care of it is a must.
-Many scientists have written the way the eye is working and they conclude, the eye is like a mirror so whatever it sees it reflects and in the very famous book (\textbf{Book of Optics}) by Ibn Alhaytham.
-He said "the eye is affected by light not the opposite".
+Many scientists have written the way the eye is working and they conclude, the eye is like a mirror so whatever it sees it reflects and in the very famous book (\textbf{Book of Optics}) \cite{alhazen1989book} written by Ibn Alhaytham, He claims "the eye is affected by light not the opposite".
 In scientific view, the task of the eye is a sight machine that let the data received from the out atmosphere to be processed by brain for decision making for example: moving right ,left and etc... 
 The camera idea was mainly gotten from the eye in the way it is working in term of light entrance to the lenses used then to the processor (Brain).
-The camera creates pictures using films or digitally made \cite{abramoff2010retinalthe}.
+The camera creates pictures using films or digitally made \cite{abramoff2010retinal}.
 Focus, contrast and the brightness also vary from camera to other based on how powerful the processor and other aspects.
 The camera creates one image (Picture) or sequence of images (Video), it could be also in real time video like the eye with an advantage for the camera that it can record events for later use.
 After observing how light travels by Ibn Alhaytham and his book he made the first pinhole camera to be the first design of camera and the development of the camera till our days.  
-The anatomy of the eye is shown in Figure 2.1 with different layers, which is lenses to process data.
-Humans may vary in the eye's layers, hence some people has a normal range of vision, others they can not see either far or near.
+The anatomy of the eye is shown in Figure 2.1 with different layers, which is compromised with lenses to process data.
+Humans may vary in the eye's structure, hence some people has a normal range of vision, others they can not see either far or near.
 Eyes also can be infected by many diseases, which will be discussed after explaining the process of vision. 
 
 Basically, the vision process can be explained as follows:
 \begin{itemize}
-\item \textbf{Cornea}: receives light for filtering.acquired
-Then, it is focusing the data received.
+\item \textbf{Cornea}: receives light for filtering.
+Then, it focuses the data received.
 \item \textbf{Aqueous Humour (Anterior Chamber)} : keeps the anterior part of the eye slightly curved and stable and it is made of viscous substance.
 \item \textbf{Pupil}: adapts the eye lenses by relaxing or contracting depending on the amount of light enters the eye.
 \item \textbf{Iris}: does the movement of the muscle based on the pupil order and based on the decision made by the pupil, the light will pass to retina
@@ -51,11 +49,11 @@ In our project we mainly focus in the retina part and it is explained as follows
   \label{fig:Retinaanatomy}
 \end{figure}  
 Retina is a multi-layered tissue located at the posterior of the eye.
-Figure 2.2 shows the sensory part in the retina is the photo-receptors that get the rays and convert them into electrical impulses to be able to be read by the brain.
+Figure 2.2 shows the sensory parts in the retina, which they are the photo-receptors that get the rays and convert them into electrical impulses to be able to be read by the brain.
 Impulses are passing through the optic nerve to the brain for image processing and the result of this process is the vision of the human.
 There are millions of photo-receptors for sensing and there are two types of them based on their shapes : Rods and Cones.
 
-Rods are located in periphery of the retina and they are imprecise and insensitive to colours so they can only recognize shapes in greyscale.
+Rods are located in periphery of the retina and they are imprecise and insensitive to colours so they can only recognize shapes in grey-scale.
 Whenever there is a change in contrast it is very case-sensitive so it is most effective at night.
 They are able to detect movement.    
 Cones are responsible for day vision as they are very precise to detect colours.
@@ -84,9 +82,10 @@ The existence of cysts is mysterious, thus it is studied by scholars to get the 
 
 \subsection{Eyes Abnormalities}
 Eyes abnormalities have no early signs, because the pain is not felt usually.
-The vision also is not interrupted to give a warning that someone is infected by eye disease to diagnose and get a treatment unless the problem is advance. 
-As the body is a complex and compact system hence any problem face the eyes might interrupt many organs in the body and could be a sign to diagnose other diseases like heart diseases and diabetics.
+The vision also is not interrupted to give a warning that someone is infected by an eye disease to be diagnosed and get a treatment unless the problem is advance. 
+As the body is a complex and compact system, hence any problem faces the eyes might interrupt many organs in the body and could be a sign to diagnose other diseases like heart diseases and diabetics.
 The main disease, project making analysis on is the Diabetic Macular Edema (DME).
+
 Diabetic sometimes called Diabetes mellitus (DM) where pancreas can not produce enough insulin or the cells can not respond to the insulin produced.
 As of 2015, an estimated 415 million people have diabetes worldwide \cite{fernandez2010obesity}.
 This represents 8.3\% of the adult population, with equal rates in both women and men \cite{vos2013years}.
@@ -107,7 +106,7 @@ Slowly, this particles will lead to lose the central vision and it is the most p
  
 \begin{figure}[htb]
         \centering
-        \includegraphics[width = 0.7\textwidth]{figures/Centralloss.jpg} % scale, width, height 
+        \includegraphics[width=0.45\textwidth]{figures/Centralloss.jpg} % scale, width, height 
   \caption{Loss of Central Vision \cite{centralloss}}
   \label{fig:Central Loss}
 \end{figure}  
@@ -116,40 +115,70 @@ Crystalline lens is responsible in recognizing on stuff and people at different 
 The typical effected patients in this syndrome is old people when the lens get stiffens due to ageing and they call it presbyopia.
 In other ways, some people might face Cataracts earlier due to some reasons for example: diabetes, birth defects, steroids and heredity.
 Cataracts patients will suffer from being sensitive to light, bad night vision, colour vision dimming, sometimes double vision in one eye and blurred vision \cite{klein1982cataracts}.
+\begin{figure}[htb]
+        \centering
+        \includegraphics[width=0.7\textwidth]{figures/Cataracts.jpg} % scale, width, height 
+  \caption{Cataracts \cite{cataracts2016}}
+  \label{fig:Central Loss}
+\end{figure} 
    
 \item \textbf{Cytomegalovirus Retinis (CMV)}: is a disease that strikes the retina specifically the light sensing cells.
 A quick treatment is required as this disease is so dangerous and sometimes might lead to blindness.
-This virus does not produce symptoms and usually the immune system is able to fight it.
+Cytomegalovirus Retinis does not produce symptoms and usually the immune system is able to fight it.
 Sometimes, this virus will be accompanied by HIV virus.
 This disease will make the patient suffer from couple of flashes for eyes, blind spots, end of the peripheral vision and blindness \cite{yeager1981prevention}.
+\begin{figure}[htb]
+        \centering
+        \includegraphics[width=0.3\textwidth]{figures/CMV.jpg} % scale, width, height 
+  \caption{CMV and HIV \cite{CMV}}
+  \label{fig:Central Loss}
+\end{figure} 
 
 \item \textbf{Diabetic Retinopathy (DR)} is disease that attacks the retina and it is a vascular complication.
 Diabetic retinopathy (DR) is a vascular complication of DME that leads to vision loss in case of late treatment \cite{wilkinson2003proposed}.
 Having Diabetes will increase the chances of getting blind than normal people.
+\begin{figure}[htb]
+        \centering
+        \includegraphics[width=0.6\textwidth]{figures/DR.jpg} % scale, width, height 
+  \caption{Diabetic Retinopathy (DR) \cite{DR2016}}
+  \label{fig:DR}
+\end{figure}
 \item \textbf{Diabetic Macular Edema (DME)} is a retinal disease and caused by fluid accumulation in the Macula dImaging of the eye is critical to improving the diagnosis, assessment of severity and progression, and evaluation of management of eye disease. 
 It is also, a combination of complication of Diabetes Retinopathy that allows the fluid to escape.
 The cones fill the Macula.
 When the fluid starts to flow through the Macula to escape, blurred vision is the result of the inability of cones to sense the light.
-Up to 30\% of Diabetes patients are suffering from DME.
+Up to 30\% of Diabetes patients are suffering from DME. 
 Two types of DME based on the way the fluid flow, which they are Focal DME and Diffuse DME.
-TO diagnose DME, either the retina thickness is increased or exudate by 500 $um$ distance from the Macula centre \cite{bandello2010diabetic}.
+To diagnose DME, retina thickness is checked if it is increased or exudate by 500 $um$ distance from the Macula centre \cite{bandello2010diabetic}.
 DME only can be diagnosed by 3-D images because the lack of depth information when capturing the image due to the retina thickness increase.
-Mainly, this project is focusing in detecting DME cysts and classifying the volumes based of how normal the volume is.
+Mainly, this project is focusing in detecting DME cysts and classifying the volumes based of how normal the volume is and DME shall look like the table in section 2.2.1
 
 \item \textbf{Glaucoma}:this disease will damage the optic nerve, which is responsible for transferring data from the eye to the brain for image processing.
 Thus, it will lead to vision loss or in the worst case scenario, blindness.
 As other eye diseases, it is hard to diagnose the disease as it developed with no symptoms.
 There are four types of Glaucoma: Chronic Open Angle Glaucoma, Acute Closed Angle Glaucoma, Secondary Glaucoma and Normal-Tension Glaucoma.
 Glaucoma in case of acute angle will happen suddenly and the patient will vomit and feel dizzy. Also, it is accompanied with headache and vision blurring \cite{group1998comparison}.
+\begin{figure}[htb]
+        \centering
+        \includegraphics[width=0.75\textwidth]{figures/Glaucoma.jpg} % scale, width, height 
+  \caption{Glaucoma \cite{Glaucoma}}
+  \label{fig:Glaucoma}
+\end{figure}
 
 \item \textbf{Retinal Detachment}: a sudden damage of the retina allowing the fluid to flow inside it.
 This action will make the retina to move away from the supportive tissue under it causing the detachment.
 With this detachment, the retina is no longer able to correctly send the signals of light to the brain.
 It can be treated but in a very good care \cite{retina1983classification}.
+\begin{figure}[htb]
+        \centering
+        \includegraphics[width=0.5\textwidth]{figures/retinaldetachment.jpg} % scale, width, height 
+  \caption{Retinal Detachment \cite{retinaldetachment}}
+  \label{fig:Glaucoma}
+\end{figure}
 \end{enumerate}
-  
+ 
 \subsection{Imaging Techniques}
-The eye imaging is critical in developing the diagnose, analysing the progression and managing the evaluation of the disease.
+The eye imaging is critical in developing the diagnosing, analysing the progression and managing the evaluation of the disease.
 The improvement in hardware such as chips and light sources and software such as image analysis is helpful in diagnosing the disease.
 Based on the needed part of the eye and the disease to be imaged, the suitable imaging techniques are used by the ophthalmologists.
 In this project, our data used are SERI and OPTIMA OCT images.
@@ -157,24 +186,38 @@ This section explains briefly ocular imaging techniques in the eye:
 
 \begin{itemize}
 \item \textbf{Scheimpflug principle}: this technique is named after its inventor the army captain Theodor Scheimpflug from Austria.
-He has used it in creating a device for correcting the distortion in aerial photographs in a very systematci method.
+He has used it in creating a device for correcting the distortion in aerial photographs in a very systematic method.
 This method has a rule that explains the orientation of the coordinates of optical system when the lenses are not in a parallel plane with the image plane.
 It is can be used in corneal pachymetry, the corneal topography mapping, also prior to refractive eye surgery such as LASIK, and can be used in detection of keratoconus \cite{hockwin1987measuring}.
+\begin{figure}[htb]
+        \centering
+        \includegraphics[width=0.7\textwidth]{figures/SPultra.jpg} % scale, width, height 
+  \caption{Scheimpflug and ultrasonic \cite{SF2016}}
+  \label{fig:Glaucoma}
+\end{figure}
 
 \item \textbf{Scanning laser ophthalmoscopy (SLO)}: this method is using confocal laser scanning microscopy for the aim of diagnosing the cornea and the retina at the eye of the human.
 It employs scanning mirrors in horizontal and vertical coordinates for the aim of scanning a particular region in the retina and create a viewable images at the monitor.
 It is also able to image the retina in real time and it might face a problem with reflections generated from the cornea.
 It is helpful in term of diagnosing retinal disorders like DR, AMD, glaucoma and DME due to the high degree of spatial sensitivity \cite{gray2008vivo}.
 It also has been developed to generate sharper images of the retina when it is combined with adaptive optics technology.
- 
+\begin{figure}[htb]
+        \centering
+        \includegraphics[width=0.6\textwidth]{figures/SLO.jpg} % scale, width, height 
+  \caption{Scanning laser ophthalmoscopy \cite{SF2016}}
+  \label{fig:Glaucoma}
+\end{figure} 
 \item \textbf{Ultrasonography}: this method uses mainly the time taken for high radio frequency pulses measurement, which is generated by piezoelectric devices.
 The pulses is reflected by the interface of the ocular tissue(A-scan).
 Another way of scanning (B-scan), which is inserting the probe across the eye to generate a section or moved in a rectangular pattern to create 3D form of structure \cite{cusumano1998three}.
 As the emphasize of this method to use the high frequency pulses rather than light waves, it has the ability to penetrate opaque corneas to better image the ciliary body and surrounding parts.
 Depth and resolution of ultrasonography penetration are affected by frequency's frequency.
-
-
- 
+\begin{figure}[htb]
+        \centering
+        \includegraphics[width=0.4\textwidth]{figures/Ocularultra.jpg} % scale, width, height 
+  \caption{Ocular Ultrasonography \cite{ocularultra}}
+  \label{fig:Glaucoma}
+\end{figure}
 \item \textbf{Magnetic Resonance Imaging(MRI)}: is a well-known technique in imaging world, which results in producing a very detailed images of the internal frame of the body.
 The principle of the MRI is based on nuclear magnetic resonance.
 Spinning of the nuclei at certain radio frequency to obtain a stored signal that contains information about the the physical and chemical frame of molecules that has hydrogen.
@@ -183,7 +226,12 @@ Hence, they will align together wither in parallel or anti-parallel to the direc
 Radio-frequency pluses will radiate echoes of the same frequencies which is detected.
 The density of the nuclei and the internal structure will affect the magnitude and the decay of the signal.
 Due to the high price of this device, so it has limited usage, but they use it in the ageing ciliary muscle diameter in phakic eyes \cite{strenk2004magnetic}, checking the 3D structure of the myopic, viewing gained ocular anomalies and some animal models in ocular drug-delivery systems\cite{kim2007assessment}.
-
+\begin{figure}[htb]
+        \centering
+        \includegraphics[width=0.3\textwidth]{figures/MRI.jpg} % scale, width, height 
+  \caption{Magnetic Resonance Imaging \cite{MRI2016}}
+  \label{fig:Glaucoma}
+\end{figure}
 \item \textbf{Optical Coherence Tomography (OCT)}: the main method of imaging in this project which is a light reflection based.
 An interface is used instead of calculating the time between emission and detection of light-pulse owing to the fast speed of light in this technique, which is faster than sound speed in almost 872,000 times (344 $m/s$ speed of sound and OCT light speed is 299,792,458$m/s$).
 Axial resolution is equal to light source coherence length and lateral resolution is the optics of the device function.
@@ -192,19 +240,41 @@ Any light outside the broadband of short frequencies length will not be used as 
 There are two types of OCT images, (A and B-scan).
 A cross-sectional tomography (B-scan) is achieved by aligning a series of axial depths (A-scan).
 (A-scan) is built by physically scanning the coherence length using the reference mirror in time domain OCT.
-This type is limiting the resolution of the image. 
+This type is limiting the resolution of the image and the images shall look like the table presented in section 2.2.1. 
 (B-scan) is used to diagnose DME,AMD and Glaucoma with better precision than fundus images.    
+\item \textbf{Optical Coherence Tomography Angiography (OCTA)} is another type of normal OCT, yet modern and from the name angiography, which means a technique to visualize the internal structure of organs and blood vessels.
+OCTA uses motion contrast imaging to high-resolution volumetric blood flow data producing angiographic images in seconds.
+OCTA matches the decorrelation signal (differences in the backscattered OCT signal intensity) between sequential OCT b-scans taken at accurately the same cross-section in order to create a map of blood flow.
+Axial bulk motion from patient movement is removed so sites of motion between repeated OCT b-scans signify strictly erythrocyte movement in retinal blood vessels.
+OCTA demands higher imaging speeds than most presently accessible OCT systems can deliver in order to attain a densely sampled volume.
+Conventional OCT device scanning speeds would outcome in too much trade-off between reduced field of view, lower image quality, and greatly increased scanning time\cite{spaide2015retinal}.
+\begin{figure}[htb]
+        \centering
+        \includegraphics[width=0.3\textwidth]{figures/OCTA.jpg} % scale, width, height 
+  \caption{Optical Coherence Tomography Angiography \cite{OCTA}}
+  \label{fig:Glaucoma}
+\end{figure}
+\item \textbf{Fundus Photography}:is a method to screen the retina directly by using the pupil as the entrance and the exit of light rays for fundus camera.
+The screening is achieved by placing the patient in front of the camera with the chin in a chin rest and the forehead against the bar.
+Then, the photographer will align the camera and presses the shutter to fire a flash to create the fundus image\cite{sinthanayothin1999automated}.
+Fundus images can be coloured with including some dyes like indocyanine and fluorescein.
+\begin{figure}[htb]
+        \centering
+        \includegraphics[width=0.3\textwidth]{figures/fundus.jpg} % scale, width, height 
+  \caption{Fundus Photography \cite{fundus2016}}
+  \label{fig:Glaucoma}
+\end{figure}
 \end{itemize} 
 
 \section{Retina Analysis in OCT images}
 
-In this section, previous work in the classification and segmentation of the OCT images is presented and compared to have a better understanding of the field chosen.
+In this section, previous work in the classification of the OCT images is presented and compared to have a better understanding of the field chosen.
 Annotated data or dataset is required to diagnose the retina condition by analysing the retina morphology.
 The design, implementation and testing of various previous work is reviewed.
-There are many data for testing purposes and to be used with a permission of patients to be used for scientific purposes.
-Many datasets are available online of different parts or organs of the human body and also about retina, which have different goals.
+There are many data for testing purposes and to be used with the permission of patients for scientific purposes.
+Many datasets are available online for different parts or organs of the human body and also including the retina, where these datasets have different goals to study based on the case wanted to analyse.
 The target in retina is different based on sickness needed to be diagnosed such as DME, AMD,DR, vessel segmentation and some localization tasks, hence many algorithms and datasets are done for each sickness to be diagnosed.
-Since, the datasets is somehow useless if is it presented alone with no ground-truths aside the image or voxel to make the validation of the results and how accurate the algorithm presented.
+Since, the datasets are somehow useless if they are presented alone with no ground-truths aside the image or voxel to make the validation of the results and how accurate the designed algorithm.
 By using the suitable method of image enhancing and extraction of data, ground-truth is giving a hand in training and testing data as the key to evaluate any algorithm's advantages and disadvantages.
 This project used two types of data of OCT volumes, which they are SERI data and OPTIMA dataset.
 
@@ -251,7 +321,6 @@ To have a precise definition we define what learning is first.
 Learning is provided by \cite{mitchell1998introduction} \' A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E\' .
 And a human can imagine how computer can integrate couple of experiences, tasks and performances based on how powerful the computer is used for the particular task.
 Tasks in machine learning can be classification, classiﬁcation with missing inputs, regression, transcription, anomaly detection and many others. 
-Here in this part and the project has two parts to discuss which is classification task in supervised method and another task which is segmentation.
 
 Srinivasan et al. propose a classification method to distinguish normal, DME, and Age-related Macular Degeneration (AMD) OCT volumes \cite{srinivasan2014fully}.
 The SD-OCT volumes are enhanced by: 
@@ -280,7 +349,7 @@ All the obtained histograms are concatenated into a global descriptor whose dime
 Finally, a SVM with an Radial Basis Function (RBF) kernel is used as classifier.
 The method achieved good results in detection of OCT scan containing different pathology such as DME or AMD, with an AUC of 0.93 using a dataset of 326 OCT scans.
 
-Lemaıtre et al. propose another method based on extracted LBP features from OCT images and dictionary learning using BoW models \cite{lemaitre2015classification}. Contrary to \cite{srinivasan2014fully}, BoW and dictionary learning are used to perform volume classification is performed rather than B-scan. In this method, the OCT images are first pre-processed using Non-Local Means (NLM) filtering to reduce the speckle noise.
+Lema\^{i}tre et al. propose another method based on extracted LBP features from OCT images and dictionary learning using BoW models \cite{lemaitre2015classification}. Contrary to \cite{srinivasan2014fully}, BoW and dictionary learning are used to perform volume classification is performed rather than B-scan. In this method, the OCT images are first pre-processed using Non-Local Means (NLM) filtering to reduce the speckle noise.
 Then, the volumes are mapped into discrete set of structures namely: local, when these structures correspond to patches; or global, when they correspond to volume slices or the whole volume.
 According to different mapping, LBP or Three Orthogonal Planes (LBP-TOP) texture features are extracted and represented per volume using histogram, PCA, or BoW.
 The final feature descriptors per volumes are classified using RF classifier.
@@ -323,13 +392,14 @@ Sankar~\textit{et~al.}~\cite{sankar2016classification} & & $\checkmark$ & $\chec
 \label{tab:survey-tab}
 \end{table*}
 
-\subsection{OCT Voxels Segmentation}
-This section aims to explain the state or arts of work done in segmenting OCT voxels.
+\subsection{OCT Patch or Cyst Classification}
+This section aims to explain the state of arts of work done in segmenting OCT voxels.
+Inspired from the research done in segmenting OCT images, we did the classification on potential regions.
 The SD-OCT data used in this project is provided by the OPTIMA laboratory (Christian Doppler Laboratory for Ophthalmic Image Analysis, Department of Ophthalmology, Medical University of Vienna) for the Cyst segmentation challenge hosted at MICCAI 2015.
 These data consisted of 15 SD-OCT volumes containing a wide variety of retinal cysts with accompanying clinical ground truth annotation manually drawn by two different experts (Two Ground-Truths).
 The SD-OCT voxels have 4 different vendors at different resolutions and scanning patterns: four volumes from Cirrus (Carl Zeiss Meditec, Dublin, CA, USA), three volumes from Nidek (NIDEK Co., Hiroishi, Gamagori, Japan), four volumes from Spectralis (Heidelberg Engineering, Heidelberg, Germany) and four volumes from Topcon (Topcon medical Systems,Santa Clara, CA, USA).
-Results validation in this challenge was compared with the first and second reading by experts and the intersection between them compared to the segmented method done by the researcher.
-Some examples of the Data used by Optima as followed:
+Results validation in this challenge were compared with the first and second reading by experts and the intersection between them compared to the segmented method done by the researcher.
+Some examples of the Data used by Optima as shown in figure 2.16:
 \begin{figure*}[t]
 \begin{center}
    \subfigure[Cirrus-1.]{\includegraphics[width=0.4\textwidth, height = 0.2\textheight]{./figures/Cirrus_1.png}}\
@@ -343,7 +413,7 @@ Some examples of the Data used by Optima as followed:
 
 Many researchers went through this challenge made by Optima laboratory.
 The method proposed by Luis et al \cite{LuisdeSisternes2015Optima} is a machine learning based, where a model is trained using manual markings (to establish the ground truth) and then tested using another 15 volumes of testing data also provided by OPTIMA laboratory.
-In the preprocex errorssing stage, the SD-OCT data normalized and de-noised using non-local means filtering in the axial and horizontal direction.
+In the preprocessing stage, the SD-OCT data normalized and de-noised using non-local means filtering in the axial and horizontal direction.
 A defined number of boundaries defining the axial location of defined intra-retinal layers are then automatically outlined using a developed segmentation algorithm done by Luis et al in \cite{de2015localization} (SOARS: Stanford OCT Automated Retinal Segementation).
 A number of quantitative features (34 features) are extracted to characterize each volume located between the segmented internal limiting membrane (ILM) and inner segment junction (IS), where the possible cysts are located in.
 These features expanded to have four possible resolutions using multi-resolution approach to have set of predictors. 
@@ -381,6 +451,7 @@ A novel method using different way of training and extracting data proposed by V
 His method mainly using the Convolution Neural Network to segment the images.
 Two stages define the process, in the first stage, Three convolution neural networks (CNNs) are used to get a segmentation at different image scales.
 In the second stage, the three CNNs scale segmentations are fused together, redefining the borders of the segmented cysts by combining local information obtained with the lower scale network with contextual information obtained from the higher scale networks.
+
 
 %An image correspondence method is based on finding a mapping
 %function ($f(x,y)$) that maps each coordinate of one image ($A$)
